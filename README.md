@@ -1,52 +1,79 @@
 # YT CORTEX v1.0
 
-**Find out why your machine learning model is failing.**
+**Turn your documents into an intelligent knowledge base.**
 
-YT CORTEX is an automated ML diagnostics platform for tabular supervised-learning projects. Upload a dataset, select a target, and the system profiles data quality, detects common ML risks (including possible leakage), trains reproducible baselines, evaluates generalization, and produces evidence-backed recommendations.
+YT CORTEX is an AI-powered document intelligence platform. Upload PDFs, DOCX, TXT, or Markdown files, and CORTEX extracts, chunks, embeds, and indexes them so you can **search semantically**, **ask questions**, and get **grounded answers with citations**.
 
-## Features
+> This is a **document intelligence / RAG platform** — not an ML Debugger.
 
-- **Dataset Profiling** — Schema detection, missing values, duplicates, health score
-- **Data Quality Detection** — Constant columns, ID detection, cardinality risks
-- **Leakage Analysis** — Flags *possible* leakage with statistical evidence
-- **Baseline Models** — Dummy, Logistic/Ridge, Random Forest, Gradient Boosting
-- **Evaluation** — Classification & regression metrics, overfitting/underfitting detection
-- **Diagnostics & Recommendations** — Prioritized, evidence-backed next steps
-- **Streamlit UI** — Interactive dashboard for the full workflow
+## Features (MVP)
+
+- Upload PDF, DOCX, TXT, Markdown
+- Text extraction with page/section metadata
+- Configurable chunking with overlap
+- Sentence Transformer embeddings
+- Chroma vector index
+- Semantic search (no LLM required)
+- Ask mode with grounded answers and citations
+- Abstention when evidence is insufficient
+- Retrieval debug panel on Ask page
+- Optional OpenAI LLM (set `OPENAI_API_KEY`)
 
 ## Quick Start
 
 ```bash
-# Create virtual environment
 python -m venv .venv
-.venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # macOS/Linux
-
-# Install dependencies
+.venv\Scripts\activate          # Windows
 pip install -r requirements.txt
 
-# Run tests
 pytest tests/ -v
-
-# Launch the app
-streamlit run app/app.py
+streamlit run app/main.py
 ```
 
 ## Usage
 
-1. Open the app in your browser
-2. Upload a CSV/XLSX dataset (or load the sample dataset)
-3. Select your target column
-4. Click **Analyze Dataset**
-5. Explore Overview, Data Health, Leakage, Features, Models, Diagnostics, and Recommendations
+1. **Home** — Create a knowledge base, upload documents (or load samples)
+2. **Knowledge Base** — View indexed documents, delete/re-index
+3. **Search** — Semantic search across your documents
+4. **Ask** — Ask questions, get grounded answers with source citations
+
+## Configuration
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OPENAI_API_KEY` | — | Enable LLM-powered RAG answers |
+| `CORTEX_EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence Transformer model |
+| `CORTEX_LLM_MODEL` | `gpt-4o-mini` | OpenAI model for generation |
+| `CORTEX_ENABLE_RERANKING` | `false` | Enable cross-encoder reranking |
+
+Without `OPENAI_API_KEY`, Ask mode uses extractive grounded answers from retrieved passages.
 
 ## Project Structure
 
-See [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) for the full architecture and phased delivery plan.
+```
+yt-cortex-v1/
+├── app/
+│   ├── main.py                 # Home page
+│   ├── pages/                  # Knowledge Base, Search, Ask
+│   └── components/
+├── src/
+│   ├── ingestion/              # Document loaders & parser
+│   ├── chunking/               # Text chunking
+│   ├── embeddings/             # Sentence Transformers
+│   ├── retrieval/              # Chroma + semantic search
+│   ├── generation/             # RAG prompts & generator
+│   ├── citations/              # Citation engine
+│   ├── knowledge/              # Knowledge base manager
+│   └── evaluation/             # Retrieval metrics
+├── examples/                   # Sample documents
+├── tests/
+└── data/                       # Runtime storage (gitignored)
+```
 
-## Sample Dataset
+## Sample Documents
 
-`examples/sample_churn.csv` — A small customer churn dataset with intentional data quality issues (ID column, possible leakage via `churn_status`).
+- `examples/machine_learning_notes.md` — Random Forest, overfitting, ensembles
+- `examples/university_regulations.md` — Attendance, scholarships, exams
 
 ## License
 

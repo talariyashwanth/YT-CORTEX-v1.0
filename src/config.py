@@ -1,0 +1,40 @@
+"""Application configuration."""
+
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = PROJECT_ROOT / "data" / "uploads"
+REPORTS_DIR = PROJECT_ROOT / "reports"
+EXAMPLES_DIR = PROJECT_ROOT / "examples"
+
+SUPPORTED_EXTENSIONS = {".csv", ".xlsx", ".xls"}
+MAX_FILE_SIZE_MB = 100
+
+# Profiling thresholds
+MISSING_MEDIUM_THRESHOLD = 0.05
+MISSING_HIGH_THRESHOLD = 0.20
+DUPLICATE_MEDIUM_THRESHOLD = 0.01
+IMBALANCE_MEDIUM_THRESHOLD = 0.20
+IMBALANCE_HIGH_THRESHOLD = 0.10
+CONSTANT_UNIQUE_THRESHOLD = 1
+NEAR_CONSTANT_UNIQUE_THRESHOLD = 2
+ID_UNIQUENESS_RATIO = 0.95
+HIGH_CARDINALITY_RATIO = 0.50
+LEAKAGE_CORRELATION_THRESHOLD = 0.90
+LEAKAGE_MI_THRESHOLD = 0.80
+
+# Modeling
+RANDOM_STATE = 42
+TEST_SIZE = 0.2
+VAL_SIZE = 0.2
+OVERFITTING_GAP_THRESHOLD = 0.15
+UNDERFITTING_MAX_SCORE = 0.65
+
+# Health score weights
+HEALTH_WEIGHTS = {
+    "missing": 0.30,
+    "duplicates": 0.15,
+    "imbalance": 0.20,
+    "quality_issues": 0.20,
+    "leakage": 0.15,
+}

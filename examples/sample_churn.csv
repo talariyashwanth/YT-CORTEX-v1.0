@@ -1,0 +1,51 @@
+customer_id,tenure,monthly_charges,total_charges,contract_type,support_calls,usage_frequency,churn_status,churn
+1001,12,65.5,786.0,Month-to-month,3,14,Active,No
+1002,24,89.2,2140.8,One year,1,22,Active,No
+1003,3,45.0,135.0,Month-to-month,5,8,Churned,Yes
+1004,36,102.5,3690.0,Two year,0,30,Active,No
+1005,6,55.0,330.0,Month-to-month,4,11,Churned,Yes
+1006,48,95.0,4560.0,Two year,1,28,Active,No
+1007,1,35.0,35.0,Month-to-month,6,5,Churned,Yes
+1008,18,72.0,1296.0,One year,2,18,Active,No
+1009,9,58.0,522.0,Month-to-month,3,12,Churned,Yes
+1010,30,88.0,2640.0,One year,1,25,Active,No
+1011,15,70.0,1050.0,One year,2,16,Active,No
+1012,2,40.0,80.0,Month-to-month,7,6,Churned,Yes
+1013,42,98.0,4116.0,Two year,0,29,Active,No
+1014,8,52.0,416.0,Month-to-month,4,10,Churned,Yes
+1015,24,85.0,2040.0,One year,1,21,Active,No
+1016,5,48.0,240.0,Month-to-month,5,9,Churned,Yes
+1017,36,92.0,3312.0,Two year,0,27,Active,No
+1018,12,68.0,816.0,One year,2,15,Active,No
+1019,3,42.0,126.0,Month-to-month,6,7,Churned,Yes
+1020,20,78.0,1560.0,One year,1,19,Active,No
+1021,7,50.0,350.0,Month-to-month,4,10,Churned,Yes
+1022,28,86.0,2408.0,One year,1,23,Active,No
+1023,10,60.0,600.0,Month-to-month,3,13,Churned,Yes
+1024,40,96.0,3840.0,Two year,0,28,Active,No
+1025,14,74.0,1036.0,One year,2,17,Active,No
+1026,4,44.0,176.0,Month-to-month,5,8,Churned,Yes
+1027,22,82.0,1804.0,One year,1,20,Active,No
+1028,6,54.0,324.0,Month-to-month,4,11,Churned,Yes
+1029,32,90.0,2880.0,One year,1,24,Active,No
+1030,16,76.0,1216.0,One year,2,18,Active,No
+1031,2,38.0,76.0,Month-to-month,7,5,Churned,Yes
+1032,38,94.0,3572.0,Two year,0,27,Active,No
+1033,11,62.0,682.0,Month-to-month,3,14,Churned,Yes
+1034,26,84.0,2184.0,One year,1,22,Active,No
+1035,9,56.0,504.0,Month-to-month,4,12,Churned,Yes
+1036,44,100.0,4400.0,Two year,0,30,Active,No
+1037,18,80.0,1440.0,One year,1,19,Active,No
+1038,5,46.0,230.0,Month-to-month,5,9,Churned,Yes
+1039,34,91.0,3094.0,One year,1,25,Active,No
+1040,13,66.0,858.0,One year,2,15,Active,No
+1041,3,41.0,123.0,Month-to-month,6,7,Churned,Yes
+1042,20,77.0,1540.0,One year,1,19,Active,No
+1043,8,53.0,424.0,Month-to-month,4,10,Churned,Yes
+1044,30,87.0,2610.0,One year,1,24,Active,No
+1045,12,69.0,828.0,One year,2,16,Active,No
+1046,1,36.0,36.0,Month-to-month,8,4,Churned,Yes
+1047,46,99.0,4554.0,Two year,0,29,Active,No
+1048,7,51.0,357.0,Month-to-month,4,10,Churned,Yes
+1049,24,83.0,1992.0,One year,1,21,Active,No
+1050,4,43.0,172.0,Month-to-month,5,8,Churned,Yes

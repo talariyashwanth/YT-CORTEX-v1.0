@@ -14,7 +14,11 @@ def test_load_markdown():
     doc = load_document(path)
     assert doc.document_name == "machine_learning_notes.md"
     assert len(doc.pages) > 0
-    assert "Random Forest" in doc.pages[0].text
+    # The markdown loader splits each "#" heading into its own page, so the
+    # title page holds only the H1 and the body content lives in later pages.
+    full_text = " ".join(p.text for p in doc.pages)
+    assert "Random Forest" in full_text
+    assert doc.pages[0].section_title == "Machine Learning Notes"
 
 
 def test_load_university_regulations():

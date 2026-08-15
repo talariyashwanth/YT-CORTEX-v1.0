@@ -1,10 +1,15 @@
+# YT CORTEX v1.0 — pinned for reproducible cloud builds.
+# Pinned so the HuggingFace / Chroma / NumPy dependency graph resolves
+# cleanly on a fresh Streamlit Community Cloud build (Python 3.11).
 streamlit>=1.32.0
-pandas>=2.1.0
-numpy>=1.26.0
-chromadb>=0.4.22
-sentence-transformers>=2.3.0
+pandas>=2.1.0,<3.0.0
+numpy==1.26.4
+chromadb==0.5.23
+sentence-transformers==3.3.1
+transformers==4.44.2
+tokenizers==0.19.1
 pymupdf>=1.23.0
 python-docx>=1.1.0
 openai>=1.12.0
-pytest>=8.0.0
 python-dotenv>=1.0.0
+pytest>=8.0.0

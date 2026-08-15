@@ -9,12 +9,11 @@ build/
 venv/
 .env
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
+data/chroma/
+data/documents/*
+!data/documents/.gitkeep
 data/uploads/*
 !data/uploads/.gitkeep
 reports/*
 !reports/.gitkeep
 .DS_Store
-*.xlsx
-!examples/

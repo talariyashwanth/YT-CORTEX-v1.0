@@ -1,40 +1,38 @@
 """Application configuration."""
 
+import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = PROJECT_ROOT / "data" / "uploads"
-REPORTS_DIR = PROJECT_ROOT / "reports"
-EXAMPLES_DIR = PROJECT_ROOT / "examples"
+DATA_DIR = PROJECT_ROOT / "data"
+DOCUMENTS_DIR = DATA_DIR / "documents"
+CHROMA_DIR = DATA_DIR / "chroma"
+KB_REGISTRY_PATH = DATA_DIR / "knowledge_bases.json"
 
-SUPPORTED_EXTENSIONS = {".csv", ".xlsx", ".xls"}
-MAX_FILE_SIZE_MB = 100
+SUPPORTED_EXTENSIONS = {".pdf", ".docx", ".txt", ".md", ".markdown"}
+MAX_FILE_SIZE_MB = 50
 
-# Profiling thresholds
-MISSING_MEDIUM_THRESHOLD = 0.05
-MISSING_HIGH_THRESHOLD = 0.20
-DUPLICATE_MEDIUM_THRESHOLD = 0.01
-IMBALANCE_MEDIUM_THRESHOLD = 0.20
-IMBALANCE_HIGH_THRESHOLD = 0.10
-CONSTANT_UNIQUE_THRESHOLD = 1
-NEAR_CONSTANT_UNIQUE_THRESHOLD = 2
-ID_UNIQUENESS_RATIO = 0.95
-HIGH_CARDINALITY_RATIO = 0.50
-LEAKAGE_CORRELATION_THRESHOLD = 0.90
-LEAKAGE_MI_THRESHOLD = 0.80
+# Chunking (token approx: 1 token ≈ 4 chars)
+CHUNK_SIZE_TOKENS = 700
+CHUNK_OVERLAP_TOKENS = 80
+CHARS_PER_TOKEN = 4
 
-# Modeling
-RANDOM_STATE = 42
-TEST_SIZE = 0.2
-VAL_SIZE = 0.2
-OVERFITTING_GAP_THRESHOLD = 0.15
-UNDERFITTING_MAX_SCORE = 0.65
+# Embeddings
+EMBEDDING_MODEL = os.getenv("CORTEX_EMBEDDING_MODEL", "all-MiniLM-L6-v2")
 
-# Health score weights
-HEALTH_WEIGHTS = {
-    "missing": 0.30,
-    "duplicates": 0.15,
-    "imbalance": 0.20,
-    "quality_issues": 0.20,
-    "leakage": 0.15,
-}
+# Retrieval
+TOP_K_RETRIEVAL = 10
+TOP_K_CONTEXT = 5
+MIN_RELEVANCE_SCORE = 0.35
+
+# LLM
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_MODEL = os.getenv("CORTEX_LLM_MODEL", "gpt-4o-mini")
+
+# Reranking (optional)
+ENABLE_RERANKING = os.getenv("CORTEX_ENABLE_RERANKING", "false").lower() == "true"
+RERANKER_MODEL = os.getenv("CORTEX_RERANKER_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")

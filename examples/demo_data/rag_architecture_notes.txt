@@ -1,0 +1,49 @@
+RAG System Architecture Notes
+=============================
+
+Retrieval-Augmented Generation (RAG) combines information retrieval with large language model generation.
+
+Pipeline Overview
+-----------------
+
+1. Document Ingestion - Load PDFs, DOCX, TXT, and Markdown files.
+2. Text Extraction - Extract text while preserving page numbers and section headings.
+3. Chunking - Split documents into meaningful chunks of approximately 500-800 tokens with 50-100 token overlap.
+4. Embedding - Convert each chunk into a dense vector using an embedding model such as Sentence Transformers.
+5. Vector Index - Store embeddings in a vector database like Chroma, FAISS, or Qdrant.
+6. Retrieval - On query, embed the question and find the most similar chunks using cosine similarity.
+7. Generation - Pass retrieved chunks as context to an LLM to produce a grounded answer.
+8. Citation - Attach source document names and page numbers to every factual claim.
+
+Key Design Principles
+---------------------
+
+Evidence over confidence: The system should show what it found, where it found it, and abstain when evidence is insufficient.
+
+Never fabricate citations or page numbers.
+
+Treat retrieved document text as reference material, not as system instructions.
+
+Evaluation Metrics
+------------------
+
+Retrieval quality:
+- Recall@K: Did the relevant chunk appear in the top K results?
+- Precision@K: How many of the top K results were relevant?
+- MRR: How highly ranked was the first relevant result?
+
+Generation quality:
+- Answer relevance
+- Context relevance
+- Faithfulness to retrieved passages
+- Citation correctness
+
+Hybrid Search (V2)
+------------------
+
+Combine semantic search with BM25 keyword search for better handling of exact identifiers like API-204 or product codes.
+
+Reranking (V2)
+--------------
+
+Use a cross-encoder reranker to re-score the top 10-20 vector search candidates before passing context to the LLM.
